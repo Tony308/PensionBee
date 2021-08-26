@@ -1,0 +1,30 @@
+{
+  "name": "static-content-challenge",
+  "version": "1.0.0",
+  "description": "PensionBee code exercise",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tony308/PensionBee-static-content-challenge/issues"
+  },
+  "homepage": "https://github.com/Tony308/PensionBee-static-content-challenge#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "supertest": "^6.1.6"
+  }
+}
