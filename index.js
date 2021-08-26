@@ -1,6 +1,6 @@
 const http = require('http');
 const fs = require('fs');
-
+require('dotenv').config();
 
 const readFile = async (file) => {
     return await new Promise((resolve, reject) => {
@@ -75,6 +75,6 @@ const app = http.createServer(async (req, res) => {
         return res.end();
     }
    
-}).listen(8080);
+}).listen(process.env.PORT);
 
 module.exports = app;
