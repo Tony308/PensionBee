@@ -14,17 +14,20 @@ const readFile = async (file) => {
 }
 
 const replaceContent = async (data, contentFile) => {
-
-    const lines = data.split("\n");
-    let content = await readFile(contentFile);
-
-    return lines.map((line) => {
-        if (line.includes(`{{content}}`)) {
-            return content;
-        } else {
-            return line;
-        }
-    }).join("\n");
+    let lines = data;
+    
+    // const lines = data.split("\n");
+    let content = await readFile(contentFile)
+    .catch(err => err);
+    const ans = lines.replace("{{content}}", content);
+    return ans;
+    // return lines.map((line) => {
+    //     if (line.includes(`{{content}}`)) {
+    //         return content;
+    //     } else {
+    //         return line;
+    //     }
+    // }).join("\n");
     
 }
 
@@ -40,7 +43,6 @@ const app = http.createServer(async (req, res) => {
             return res.end();            
         }
 
-
     if (url === "/about-page") {
         res.writeHead(200, {"Content-Type": "text/html"});
         const page = await replaceContent(data, "./content/about-page/index.md");
@@ -49,17 +51,22 @@ const app = http.createServer(async (req, res) => {
         
     } else if (url === "/blog/june/company-update") {
         res.writeHead(200, {"Content-Type": "text/html"});
-        res.write("updates")
+        const page = await replaceContent(data, "./content/blog/june/company-update/index.md");
+        res.write(page);
         return res.end();
         
     } else if (url === "/jobs") {
         res.writeHead(200, {"Content-Type": "text/html"});
-        res.write("jobs")
+        const page = await replaceContent(data, "./content/jobs/index.md");
+
+        res.write(page);
         return res.end();
 
     } else if (url === "/valves") {
         res.writeHead(200, {"Content-Type": "text/html"});
-        res.write("valves");
+        const page = await replaceContent(data, "./content/valves/index.md");
+
+        res.write(page);
         return res.end();
 
     } else {
